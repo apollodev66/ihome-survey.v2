@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFolder } from "@fortawesome/free-solid-svg-icons";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
-import { faMap } from "@fortawesome/free-solid-svg-icons";
-import { Modal, Button, Form } from "react-bootstrap";
+import { faFolder, faImage, faMap } from "@fortawesome/free-solid-svg-icons";
+import { Button, Form } from "react-bootstrap";
 import MyForm from "./MyForm";
 
 function Table() {
@@ -14,10 +12,9 @@ function Table() {
   const [error, setError] = useState(null);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
+
   const generateGoogleMapsUrl = (location) => {
-    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-      location
-    )}`;
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}`;
   };
 
   useEffect(() => {
@@ -85,7 +82,7 @@ function Table() {
           <Form.Control
             as="select"
             value={itemsPerPage}
-            onChange={(e) => setItemsPerPage(parseInt(e.target.value))}
+            onChange={(e) => setItemsPerPage(parseInt(e.target.value, 10))}
           >
             <option value={10}>10</option>
             <option value={20}>20</option>
@@ -146,10 +143,7 @@ function Table() {
                       <div className="modal-dialog modal-lg">
                         <div className="modal-content">
                           <div className="modal-header">
-                            <h5
-                              className="modal-title"
-                              id={`detailsModalLabel${index}`}
-                            >
+                            <h5 className="modal-title" id={`detailsModalLabel${index}`}>
                               ข้อมูลของ {item.cusname}
                             </h5>
                             <button
@@ -160,74 +154,26 @@ function Table() {
                             ></button>
                           </div>
                           <div className="modal-body">
-                            <p>
-                              <strong>คูปอง:</strong> {item.coupon}
-                            </p>
-                            <p>
-                              <strong>หมายเหตุ:</strong> {item.notes}
-                            </p>
-                            <p>
-                              <strong>จังหวัด:</strong> {item.province}
-                            </p>
-                            <p>
-                              <strong>ที่อยู่:</strong> {item.address}
-                            </p>
-                            <p>
-                              <strong>สถาปนิก:</strong> {item.architect}
-                            </p>
-                            <p>
-                              <strong>โทรศัพท์สถาปนิก:</strong>{" "}
-                              {item.architectPhone}
-                            </p>
-                            <p>
-                              <strong>ผู้รับเหมา:</strong> {item.contractor}
-                            </p>
-                            <p>
-                              <strong>โทรศัพท์ผู้รับเหมา:</strong>{" "}
-                              {item.contractorPhone}
-                            </p>
-                            <p>
-                              <strong>หัวหน้าช่าง:</strong> {item.foreman}
-                            </p>
-                            <p>
-                              <strong>โทรศัพท์หัวหน้าช่าง:</strong>{" "}
-                              {item.foremanPhone}
-                            </p>
-                            <p>
-                              <strong>ประเภทอาคาร:</strong> {item.buildingType}
-                            </p>
-                            <p>
-                              <strong>ชื่อบริษัท:</strong> {item.companyName}
-                            </p>
-                            <p>
-                              <strong>โทรศัพท์บริษัท:</strong>{" "}
-                              {item.companyPhone}
-                            </p>
-                            <p>
-                              <strong>ชื่อผู้จัดซื้อ:</strong>{" "}
-                              {item.purchaserName}
-                            </p>
-                            <p>
-                              <strong>โทรศัพท์ผู้จัดซื้อ:</strong>{" "}
-                              {item.purchaserPhone}
-                            </p>
-                            <p>
-                              <strong>งบประมาณ:</strong> {item.budget} บาท
-                            </p>
-                            <p>
-                              <strong>ขั้นตอนที่เสร็จสิ้น:</strong>{" "}
-                              {completedSteps}
-                            </p>
-                            <p>
-                              <strong>ขั้นตอนที่ยังไม่เสร็จ:</strong>{" "}
-                              {uncompletedSteps}
-                            </p>
-                            <p>
-                              <strong>นัดหมาย:</strong> {item.appointment}
-                            </p>
-                            <p>
-                              <strong>วันที่สำรวจ:</strong> {item.surveyDate}
-                            </p>
+                            <p><strong>คูปอง:</strong> {item.coupon}</p>
+                            <p><strong>หมายเหตุ:</strong> {item.notes}</p>
+                            <p><strong>จังหวัด:</strong> {item.province}</p>
+                            <p><strong>ที่อยู่:</strong> {item.address}</p>
+                            <p><strong>สถาปนิก:</strong> {item.architect}</p>
+                            <p><strong>โทรศัพท์สถาปนิก:</strong> {item.architectPhone}</p>
+                            <p><strong>ผู้รับเหมา:</strong> {item.contractor}</p>
+                            <p><strong>โทรศัพท์ผู้รับเหมา:</strong> {item.contractorPhone}</p>
+                            <p><strong>หัวหน้าช่าง:</strong> {item.foreman}</p>
+                            <p><strong>โทรศัพท์หัวหน้าช่าง:</strong> {item.foremanPhone}</p>
+                            <p><strong>ประเภทอาคาร:</strong> {item.buildingType}</p>
+                            <p><strong>ชื่อบริษัท:</strong> {item.companyName}</p>
+                            <p><strong>โทรศัพท์บริษัท:</strong> {item.companyPhone}</p>
+                            <p><strong>ชื่อผู้จัดซื้อ:</strong> {item.purchaserName}</p>
+                            <p><strong>โทรศัพท์ผู้จัดซื้อ:</strong> {item.purchaserPhone}</p>
+                            <p><strong>งบประมาณ:</strong> {item.budget} บาท</p>
+                            <p><strong>ขั้นตอนที่เสร็จสิ้น:</strong> {completedSteps}</p>
+                            <p><strong>ขั้นตอนที่ยังไม่เสร็จ:</strong> {uncompletedSteps}</p>
+                            <p><strong>นัดหมาย:</strong> {item.appointment}</p>
+                            <p><strong>วันที่สำรวจ:</strong> {item.surveyDate}</p>
                           </div>
                           <div className="modal-footer">
                             <button
@@ -261,10 +207,7 @@ function Table() {
                       <div className="modal-dialog modal-dialog-centered modal-lg">
                         <div className="modal-content">
                           <div className="modal-header">
-                            <h5
-                              className="modal-title"
-                              id={`imageModalLabel${index}`}
-                            >
+                            <h5 className="modal-title" id={`imageModalLabel${index}`}>
                               Images
                             </h5>
                             <button
@@ -288,7 +231,6 @@ function Table() {
                               )}
                               {item.leftImg && (
                                 <div className="col-12 mb-3">
-                                  <hr />
                                   <h6>Left View</h6>
                                   <img
                                     src={getImageUrl(item.leftImg)}
@@ -299,81 +241,12 @@ function Table() {
                               )}
                               {item.rightImg && (
                                 <div className="col-12 mb-3">
-                                  <hr />
                                   <h6>Right View</h6>
                                   <img
                                     src={getImageUrl(item.rightImg)}
                                     alt="Right"
                                     className="img-fluid"
                                   />
-                                </div>
-                              )}
-                              {item.backImg && (
-                                <div className="col-12 mb-3">
-                                  <hr />
-                                  <h6>Back View</h6>
-                                  <img
-                                    src={getImageUrl(item.backImg)}
-                                    alt="Back"
-                                    className="img-fluid"
-                                  />
-                                </div>
-                              )}
-                              {item.interiorImg && (
-                                <div className="col-12 mb-3">
-                                  <hr />
-                                  <h6>Interior View</h6>
-                                  <div
-                                    id={`carouselInterior${index}`}
-                                    className="carousel slide"
-                                  >
-                                    <div className="carousel-inner">
-                                      {item.interiorImg
-                                        .split(",")
-                                        .map((img, idx) => (
-                                          <div
-                                            className={`carousel-item ${
-                                              idx === 0 ? "active" : ""
-                                            }`}
-                                            key={img}
-                                          >
-                                            <img
-                                              src={getImageUrl(img)}
-                                              className="d-block w-100"
-                                              alt={`Interior ${idx + 1}`}
-                                            />
-                                          </div>
-                                        ))}
-                                    </div>
-                                    <button
-                                      className="carousel-control-prev"
-                                      type="button"
-                                      data-bs-target={`#carouselInterior${index}`}
-                                      data-bs-slide="prev"
-                                    >
-                                      <span
-                                        className="carousel-control-prev-icon"
-                                        aria-hidden="true"
-                                      ></span>
-                                      <span className="visually-hidden">
-                                        Previous
-                                      </span>
-                                    </button>
-                                    <button
-                                      className="carousel-control-next"
-                                      type="button"
-                                      data-bs-target={`#carouselInterior${index}`}
-                                      data-bs-slide="next"
-                                    >
-                                      <span
-                                        className="carousel-control-next-icon"
-                                        aria-hidden="true"
-                                      ></span>
-                                      <span className="visually-hidden">
-                                        Next
-                                      </span>
-                                    </button>
-                                  </div>
                                 </div>
                               )}
                             </div>
@@ -384,7 +257,7 @@ function Table() {
                               className="btn btn-secondary"
                               data-bs-dismiss="modal"
                             >
-                              ปิด
+                              Close
                             </button>
                           </div>
                         </div>
@@ -397,28 +270,23 @@ function Table() {
           </tbody>
         </table>
       </div>
-
-      {/* Pagination Controls */}
-      <div className="d-flex justify-content-between align-items-center mt-3">
-        <Button
-          variant="primary"
+      <div className="d-flex justify-content-between">
+        <button
+          className="btn btn-primary"
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
-          onClick={() => setCurrentPage(currentPage - 1)}
         >
-          ก่อนหน้า
-        </Button>
-        <span>
-          หน้า {currentPage} / {totalPages}
-        </span>
-        <Button
-          variant="primary"
+          Previous
+        </button>
+        <span>Page {currentPage} of {totalPages}</span>
+        <button
+          className="btn btn-primary"
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
           disabled={currentPage === totalPages}
-          onClick={() => setCurrentPage(currentPage + 1)}
         >
-          ถัดไป
-        </Button>
+          Next
+        </button>
       </div>
-      <br></br>
     </div>
   );
 }
