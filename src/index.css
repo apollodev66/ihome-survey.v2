@@ -1,0 +1,34 @@
+/* Add these styles to your CSS file */
+
+/* Container for the steps */
+.step-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* Space between items */
+}
+
+/* Individual step item */
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Space between checkbox and label */
+  cursor: pointer; /* Pointer cursor for better UX */
+}
+
+/* Style for checkbox labels */
+.step-label {
+  font-size: 0.875rem; /* Slightly smaller font size */
+  cursor: pointer; /* Pointer cursor for better UX */
+}
+
+/* Ensure the checkbox itself is larger for easier clicking */
+.step-item input[type="checkbox"] {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+/* Add a little margin at the bottom of each section */
+.mb-3 {
+  margin-bottom: 1rem;
+}

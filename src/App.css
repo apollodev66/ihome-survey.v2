@@ -1,0 +1,84 @@
+/* นำเข้าฟอนต์จาก Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap');
+
+/* ใช้ฟอนต์ที่นำเข้า */
+body {
+  font-family: 'Kanit', sans-serif;
+}
+
+/* ซ่อนองค์ประกอบบนหน้าจอมือถือ */
+.hide-on-mobile {
+  display: block; /* แสดงผลในทุกขนาดหน้าจอเริ่มต้น */
+}
+
+/* ซ่อน .hide-on-mobile บนหน้าจอที่มีขนาดเล็กกว่า 768px */
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none;
+  }
+}
+
+.step-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.step-label {
+  margin-left: 8px;
+  cursor: pointer; /* Makes it clear that the label is clickable */
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.step-label:hover {
+  background-color: #e2e2e2;
+  border-color: #b0b0b0;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #007bff; /* Change the color of the checkbox when checked */
+  border-color: #007bff;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.navbar .btn-outline-light {
+  margin-left: auto;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+.footer {
+  background-color: #f8f9fa;
+  padding: 10px;
+  text-align: center;
+  color: #333;
+}
+
+
+
+
