@@ -17,24 +17,30 @@ function Table() {
     return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}`;
   };
 
-  useEffect(() => {
-    fetch("https://0571-49-48-29-47.ngrok-free.app/api/testproject1")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((result) => {
+ useEffect(() => {
+  fetch("https://0571-49-48-29-47.ngrok-free.app/api/testproject1")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.statusText}`);
+      }
+      return response.text(); // รับการตอบสนองเป็นข้อความ
+    })
+    .then((text) => {
+      try {
+        const result = JSON.parse(text); // แปลงข้อความเป็น JSON
         setData(result);
         setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the data:", error);
-        setError(error);
-        setIsLoading(false);
-      });
-  }, []);
+      } catch (e) {
+        throw new Error("Failed to parse JSON: " + e.message);
+      }
+    })
+    .catch((error) => {
+      console.error("There was an error fetching the data:", error);
+      setError(error);
+      setIsLoading(false);
+    });
+}, []);
+
 
   if (isLoading) {
     return <div>กำลังดาวน์โหลดข้อมูล......</div>;
