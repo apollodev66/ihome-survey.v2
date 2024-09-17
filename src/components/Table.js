@@ -21,7 +21,7 @@ function Table() {
   };
 
   useEffect(() => {
-    fetch("http://cncihome.3bbddns.com:93/api/testproject1")
+    fetch("https://0571-49-48-29-47.ngrok-free.app/api/testproject1")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -65,7 +65,7 @@ function Table() {
 
   const getImageUrl = (filename) => {
     return filename
-      ? `http://cncihome.3bbddns.com:93/api/uploads/${filename}`
+      ? `https://0571-49-48-29-47.ngrok-free.app/api/uploads/${filename}`
       : "placeholder-image-url";
   };
 
