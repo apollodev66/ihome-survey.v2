@@ -175,7 +175,7 @@ const MyForm = () => {
         }
       });
 
-      await axios.post("http://cncihome.3bbddns.com:93/api/submit", formDataToSend, {
+      await axios.post("https://0571-49-48-29-47.ngrok-free.app/api/submit", formDataToSend, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
