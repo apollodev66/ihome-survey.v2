@@ -18,7 +18,7 @@ function Table() {
   };
 
   useEffect(() => {
-    fetch("https://0571-49-48-29-47.ngrok-free.app/api/testproject1")
+    fetch("https://d15c-171-5-45-166.ngrok-free.app/api/testproject1")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Network response was not ok: ${response.statusText}`);
@@ -67,7 +67,7 @@ function Table() {
 
   const getImageUrl = (filename) => {
     return filename
-      ? `https://0571-49-48-29-47.ngrok-free.app/api/uploads/${filename}`
+      ? `https://d15c-171-5-45-166.ngrok-free.app/api/uploads/${filename}`
       : "placeholder-image-url";
   };
 
