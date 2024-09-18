@@ -17,29 +17,37 @@ function Table() {
     return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}`;
   };
 
-  useEffect(() => {
-    fetch("https://d15c-171-5-45-166.ngrok-free.app/api/testproject1")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Network response was not ok: ${response.statusText}`);
-        }
-        return response.text(); // รับการตอบสนองเป็นข้อความ
-      })
-      .then((text) => {
-        try {
-          const result = JSON.parse(text); // แปลงข้อความเป็น JSON
-          setData(result);
-          setIsLoading(false);
-        } catch (e) {
-          throw new Error("Failed to parse JSON: " + e.message);
-        }
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the data:", error);
-        setError(error);
+useEffect(() => {
+  fetch("https://d15c-171-5-45-166.ngrok-free.app/api/testproject1")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.statusText}`);
+      }
+
+      // ตรวจสอบ content-type ของ response
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error(`Expected JSON but received ${contentType}`);
+      }
+
+      return response.text(); // รับการตอบสนองเป็นข้อความ
+    })
+    .then((text) => {
+      try {
+        const result = JSON.parse(text); // แปลงข้อความเป็น JSON
+        setData(result);
         setIsLoading(false);
-      });
-  }, []);
+      } catch (e) {
+        throw new Error("Failed to parse JSON: " + e.message);
+      }
+    })
+    .catch((error) => {
+      console.error("There was an error fetching the data:", error);
+      setError(error);
+      setIsLoading(false);
+    });
+}, []);
+
   
   if (isLoading) {
     return <div>กำลังดาวน์โหลดข้อมูล......</div>;
