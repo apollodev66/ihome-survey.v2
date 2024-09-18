@@ -17,29 +17,28 @@ function Table() {
     return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}`;
   };
 
-useEffect(() => {
-  fetch("https://d15c-171-5-45-166.ngrok-free.app/api/testproject1")
-    .then((response) => {
-      if (!response.ok) {
-        // ตรวจสอบว่าเซิร์ฟเวอร์ส่งกลับสถานะผิดพลาดหรือไม่
-        return response.text().then(text => {
-          console.error(`Network response was not ok: ${response.statusText} - ${text}`);
-          setError(new Error(`Network response was not ok: ${response.statusText} - ${text}`));
-          setIsLoading(false);
-        });
-      }
-      return response.json(); // อ่านเป็น JSON
-    })
-    .then((result) => {
-      setData(result);
-      setIsLoading(false);
-    })
-    .catch((error) => {
-      console.error("There was an error fetching the data:", error);
-      setError(error);
-      setIsLoading(false);
-    });
-}, []);
+fetch("https://d15c-171-5-45-166.ngrok-free.app/api/testproject1")
+  .then((response) => {
+    console.log('Content-Type:', response.headers.get('Content-Type'));
+    if (!response.ok) {
+      return response.text().then(text => {
+        console.error(`Network response was not ok: ${response.statusText} - ${text}`);
+        setError(new Error(`Network response was not ok: ${response.statusText} - ${text}`));
+        setIsLoading(false);
+      });
+    }
+    return response.json(); // อ่านเป็น JSON
+  })
+  .then((result) => {
+    setData(result);
+    setIsLoading(false);
+  })
+  .catch((error) => {
+    console.error("There was an error fetching the data:", error);
+    setError(error);
+    setIsLoading(false);
+  });
+
 
   if (isLoading) {
     return <div>กำลังดาวน์โหลดข้อมูล......</div>;
