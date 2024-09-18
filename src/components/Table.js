@@ -23,14 +23,7 @@ useEffect(() => {
       if (!response.ok) {
         throw new Error(`Network response was not ok: ${response.statusText}`);
       }
-
-      // ตรวจสอบ content-type ของ response
-      const contentType = response.headers.get("content-type");
-      if (!contentType || !contentType.includes("application/json")) {
-        throw new Error(`Expected JSON but received ${contentType}`);
-      }
-
-      return response.text(); // รับการตอบสนองเป็นข้อความ
+      return response.text(); // อ่านเป็นข้อความ
     })
     .then((text) => {
       try {
@@ -47,6 +40,7 @@ useEffect(() => {
       setIsLoading(false);
     });
 }, []);
+
 
   
   if (isLoading) {
