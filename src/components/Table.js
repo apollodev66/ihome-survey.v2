@@ -17,32 +17,25 @@ function Table() {
     return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}`;
   };
 
-useEffect(() => {
-  fetch("https://d15c-171-5-45-166.ngrok-free.app/api/testproject1")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Network response was not ok: ${response.statusText}`);
-      }
-      return response.text(); // อ่านเป็นข้อความ
-    })
-    .then((text) => {
-      try {
-        const result = JSON.parse(text); // แปลงข้อความเป็น JSON
+  useEffect(() => {
+    fetch("https://d15c-171-5-45-166.ngrok-free.app/api/testproject1")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+        return response.json(); // อ่านเป็น JSON
+      })
+      .then((result) => {
         setData(result);
         setIsLoading(false);
-      } catch (e) {
-        throw new Error("Failed to parse JSON: " + e.message);
-      }
-    })
-    .catch((error) => {
-      console.error("There was an error fetching the data:", error);
-      setError(error);
-      setIsLoading(false);
-    });
-}, []);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the data:", error);
+        setError(error);
+        setIsLoading(false);
+      });
+  }, []);
 
-
-  
   if (isLoading) {
     return <div>กำลังดาวน์โหลดข้อมูล......</div>;
   }
@@ -77,7 +70,7 @@ useEffect(() => {
   const totalPages = Math.ceil(data.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentItems = data.slice(startIndex, startIndex + itemsPerPage);
-
+  
   return (
     <div className="container mt-5">
       <div className="mb-3 d-flex align-items-center">
